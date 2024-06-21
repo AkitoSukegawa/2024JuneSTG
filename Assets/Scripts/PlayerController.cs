@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float m_slowMovePower = 2f;
     /// <summary>スプライトの管理変数</summary>
     [SerializeField] Sprite[] m_sprites = new Sprite[3];
+    /// <summary>通常時に撃つ玉のプレハブ</summary>
+    [SerializeField] GameObject m_bulletNormal;
     /// <summary>水平方向の入力値</summary>
     float m_h;
     /// <summary>垂直方向の入力値</summary>
@@ -43,6 +45,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift)) 
         { 
             m_isSllow = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(m_bulletNormal , this.transform);
         }
 
         if (m_isSllow)
