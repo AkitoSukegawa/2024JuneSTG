@@ -12,22 +12,28 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Sprite[] m_sprites = new Sprite[3];
     /// <summary>通常時に撃つ玉のプレハブ</summary>
     [SerializeField] GameObject m_bulletNormal;
+    /// <summary>低速移動時に撃つ玉のプレハブ</summary>
+    [SerializeField] GameObject m_bulletSlow;
     /// <summary>水平方向の入力値</summary>
     float m_h;
     /// <summary>垂直方向の入力値</summary>
     float m_v;
+    /// <summary>弾を生成する間隔(秒)</summary>
+    [SerializeField] float m_bulletInterval = 0.5f;
+    /// <summary>弾生成タイマー用変数</summary>
+    float m_bulletTimer;
+    /// <summary>弾が発射できるか否か</summary>
+    private bool m_canFire = true;
 
     Rigidbody2D m_rb = default;
     SpriteRenderer m_sr;
 
+    /// <summary>初期位置の保存用変数</summary>
     Vector3 m_initialPosition;
     /// <summary>低速移動状態か否か </summary>
     bool m_isSllow = false;
     /// <summary>弾が生成された時の弾ごとの距離 </summary>
     [SerializeField] float m_bulletDistance = 0.1f;
-
-    /// <summary>プレイヤーの座標取得用 </summary>
-    Vector3 m_playerPotition = default;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +41,7 @@ public class PlayerController : MonoBehaviour
         m_sr = GetComponent<SpriteRenderer>();
         m_rb = GetComponent<Rigidbody2D>();   
         m_initialPosition = this.transform.position;
+        m_bulletTimer = m_bulletInterval;
     }
 
     // Update is called once per frame
@@ -42,7 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         m_h = Input.GetAxisRaw("Horizontal");
         m_v = Input.GetAxisRaw("Vertical");
-
+        m_bulletTimer += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.LeftShift) )
         {
             m_isSllow = true;
@@ -51,12 +58,26 @@ public class PlayerController : MonoBehaviour
         { 
             m_isSllow = false;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && m_canFire)
         {
-            GameObject bulletNormal_1 = Instantiate(m_bulletNormal);
-            bulletNormal_1.transform.position = new Vector2(this.transform.position.x - m_bulletDistance, this.transform.position.y);
-            GameObject bulletNormal_2 = Instantiate(m_bulletNormal);
-            bulletNormal_2.transform.position = new Vector2(this.transform.position.x + m_bulletDistance, this.transform.position.y);
+            if (m_isSllow) 
+            {
+                GameObject bulletSlow_1 = Instantiate(m_bulletSlow);
+                bulletSlow_1.transform.position = new Vector2(this.transform.position.x - m_bulletDistance *2, this.transform.position.y + 0.5f);
+                GameObject bulletSlow_2 = Instantiate(m_bulletSlow);
+                bulletSlow_2.transform.position = new Vector2(this.transform.position.x + m_bulletDistance *2, this.transform.position.y + 0.5f);
+                GameObject bulletSlow_3 = Instantiate(m_bulletSlow);
+                bulletSlow_3.transform.position = new Vector2(this.transform.position.x , this.transform.position.y + 0.5f);
+            }
+            else
+            {
+                GameObject bulletNormal_1 = Instantiate(m_bulletNormal);
+                bulletNormal_1.transform.position = new Vector2(this.transform.position.x - m_bulletDistance, this.transform.position.y + 0.5f);
+                GameObject bulletNormal_2 = Instantiate(m_bulletNormal);
+                bulletNormal_2.transform.position = new Vector2(this.transform.position.x + m_bulletDistance, this.transform.position.y + 0.5f);
+            }
+            m_bulletTimer = 0f;
+            m_canFire = false;
         }
 
         if (m_isSllow)
@@ -79,6 +100,12 @@ public class PlayerController : MonoBehaviour
         else 
         {
             m_sr.sprite = m_sprites[0];
+        }
+
+        if (m_bulletTimer >= m_bulletInterval) 
+        { 
+            m_bulletTimer = 0f;
+            m_canFire = true;
         }
     }
 
