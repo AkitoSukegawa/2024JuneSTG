@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour
     Vector3 m_initialPosition;
     /// <summary>低速移動状態か否か </summary>
     bool m_isSllow = false;
+    /// <summary>弾が生成された時の弾ごとの距離 </summary>
+    [SerializeField] float m_bulletDistance = 0.1f;
+
+    /// <summary>プレイヤーの座標取得用 </summary>
+    Vector3 m_playerPotition = default;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +53,10 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(m_bulletNormal , this.transform);
+            GameObject bulletNormal_1 = Instantiate(m_bulletNormal);
+            bulletNormal_1.transform.position = new Vector2(this.transform.position.x - m_bulletDistance, this.transform.position.y);
+            GameObject bulletNormal_2 = Instantiate(m_bulletNormal);
+            bulletNormal_2.transform.position = new Vector2(this.transform.position.x + m_bulletDistance, this.transform.position.y);
         }
 
         if (m_isSllow)
