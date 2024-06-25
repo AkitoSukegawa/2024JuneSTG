@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SlowBullet
   - NormalBullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -40,6 +41,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: New Layer 1
+    uniqueID: 804747851
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

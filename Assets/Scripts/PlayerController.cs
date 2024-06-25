@@ -66,8 +66,6 @@ public class PlayerController : MonoBehaviour
                 bulletSlow_1.transform.position = new Vector2(this.transform.position.x - m_bulletDistance *2, this.transform.position.y + 0.5f);
                 GameObject bulletSlow_2 = Instantiate(m_bulletSlow);
                 bulletSlow_2.transform.position = new Vector2(this.transform.position.x + m_bulletDistance *2, this.transform.position.y + 0.5f);
-                GameObject bulletSlow_3 = Instantiate(m_bulletSlow);
-                bulletSlow_3.transform.position = new Vector2(this.transform.position.x , this.transform.position.y + 0.5f);
             }
             else
             {
@@ -78,15 +76,6 @@ public class PlayerController : MonoBehaviour
             }
             m_bulletTimer = 0f;
             m_canFire = false;
-        }
-
-        if (m_isSllow)
-        {
-            m_rb.velocity = new Vector2(m_h, m_v).normalized * m_slowMovePower;
-        }
-        else
-        {
-            m_rb.velocity = new Vector2(m_h, m_v).normalized * m_normalMovePower;
         }
 
         if (m_h >= 1)
@@ -108,5 +97,15 @@ public class PlayerController : MonoBehaviour
             m_canFire = true;
         }
     }
-
+    private void FixedUpdate()
+    {
+        if (m_isSllow)
+        {
+            m_rb.velocity = new Vector2(m_h, m_v).normalized * m_slowMovePower;
+        }
+        else
+        {
+            m_rb.velocity = new Vector2(m_h, m_v).normalized * m_normalMovePower;
+        }
+    }
 }

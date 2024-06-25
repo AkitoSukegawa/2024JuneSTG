@@ -9,25 +9,61 @@ public class BulletController : MonoBehaviour
     [SerializeField] float m_nMovePower = 15f;
     /// <summary>低速弾の移動する力</summary>
     [SerializeField] float m_sMovePower = 10f;
-    string m_tag;
+    /// <summary>弾のタグ取得用 </summary>
+    string m_bulletTag;
+    /// <summary>敵のタグ取得用 </summary>
+    string m_enemyTag;
+
+    /// <summary>弾を削除するまでの間隔(秒)</summary>
+    [SerializeField] float m_bDInterval = 1.5f;
+    /// <summary>弾削除タイマー用変数</summary>
+    float m_bDTimer;
+
+    Transform m_enemyTrans = default;
 
     Rigidbody2D m_rb = default;
+
+    
 
     private void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
-        m_tag = this.tag;
+        m_bulletTag = this.tag;
+        m_bDTimer = 0f;
     }
     // Update is called once per frame
     void Update()
     {
-        if (m_tag == "SlowBullet")
+        m_bDTimer += Time.deltaTime;
+        if (m_bulletTag == "SlowBullet")
         {
-            m_rb.velocity = new Vector2(0, 1).normalized * m_sMovePower;
+            if (m_enemyTrans != null)
+            {
+                Vector2 v2 = m_enemyTrans.position - this.transform.position;
+                m_rb.velocity = v2.normalized * m_sMovePower;
+            }
+            else
+            {
+                m_rb.velocity = new Vector2(0, 1).normalized * m_sMovePower;
+            }
         }
-        else if (m_tag == "NormalBullet")
+        else if (m_bulletTag == "NormalBullet")
         {
             m_rb.velocity = new Vector2(0, 1).normalized * m_nMovePower;
         }
+        if (m_bDTimer >= m_bDInterval)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    public void TagChecker(string thisTag , Transform thisTransform) 
+    {
+        m_enemyTag = thisTag;
+        Debug.Log(thisTag);
+        if (m_enemyTag == "Enemy")
+        {
+            m_enemyTrans = thisTransform;
+        }
+
     }
 }
