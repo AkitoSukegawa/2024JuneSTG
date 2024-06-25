@@ -15,7 +15,7 @@ public class BulletController : MonoBehaviour
     string m_enemyTag;
 
     /// <summary>’e‚ğíœ‚·‚é‚Ü‚Å‚ÌŠÔŠu(•b)</summary>
-    [SerializeField] float m_bDInterval = 1.5f;
+    [SerializeField] float m_bDInterval = 3f;
     /// <summary>’eíœƒ^ƒCƒ}[—p•Ï”</summary>
     float m_bDTimer;
 
@@ -60,10 +60,7 @@ public class BulletController : MonoBehaviour
     {
         m_enemyTag = thisTag;
         Debug.Log(thisTag);
-        if (m_enemyTag == "Enemy")
-        {
-            m_enemyTrans = thisTransform;
-        }
+        m_enemyTrans = thisTransform;
 
     }
 }

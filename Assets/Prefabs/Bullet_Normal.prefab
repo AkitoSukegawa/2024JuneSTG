@@ -163,4 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_nMovePower: 15
   m_sMovePower: 15
-  m_bDInterval: 3
+  m_bDInterval: 2
