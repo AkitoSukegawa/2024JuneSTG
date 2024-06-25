@@ -59,7 +59,6 @@ public class BulletController : MonoBehaviour
     public void TagChecker(string thisTag , Transform thisTransform) 
     {
         m_enemyTag = thisTag;
-        Debug.Log(thisTag);
         m_enemyTrans = thisTransform;
 
     }
