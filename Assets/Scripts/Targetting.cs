@@ -9,14 +9,20 @@ public class Targetting : MonoBehaviour
     string tags;
 
     Transform target;
+
+    bool isTarget = false;
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        tags = collision.tag;
-        target = collision.transform;
-        if (tags == "Enemy")
+        if (!isTarget)
         {
-            bulletController.TagChecker(tags, target);
+            tags = collision.tag;
+            target = collision.transform;
+            if (tags == "Enemy")
+            {
+                bulletController.TagChecker(tags, target);
+                isTarget = true;
+            }
         }
     }
 }
