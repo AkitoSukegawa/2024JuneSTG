@@ -8,6 +8,7 @@ TagManager:
   - NormalBullet
   - Enemy
   - SpawnPoint
+  - StayPoint
   layers:
   - Default
   - TransparentFX

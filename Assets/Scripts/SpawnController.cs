@@ -17,18 +17,21 @@ public class SpawnController : MonoBehaviour
     /// <summary>湧き管理のタイマー用変数</summary>
     float m_eSTimer;
     /// <summary>Wave管理用変数</summary>
-    int m_spawnCount = 0;
+    int m_spawnCount;
     /// <summary>敵の湧きを制御する変数</summary>
     bool m_isSpawned = false;
     /// <summary>敵が画面内にいるかを確認する変数</summary>
     bool m_isEnabled = false;
     /// <summary>ボスが湧いたかを確認する変数 </summary>
     bool m_bossSpawned = false;
+
+    EnemyController m_ec;
     void Start()
     {
         m_spawnController = GameObject.FindGameObjectsWithTag("SpawnPoint");
         m_bossSP = GameObject.Find("BossSpawn");
         m_eSTimer = 0;
+        m_spawnCount = 0;
     }
 
     // Update is called once per frame
@@ -44,10 +47,11 @@ public class SpawnController : MonoBehaviour
         }
         if (m_isSpawned && !m_isEnabled)
         {
+            m_isEnabled = true;
             m_spawnCount++;
             for(int i = 0; i < m_spawnController.Length; i++)
             {
-                if (m_spawnCount >= 8)
+                if (m_spawnCount >= 9)
                 {
                     GameObject Boss = Instantiate(m_boss);
                     Boss.transform.position = new Vector2(m_bossSP.transform.position.x, m_bossSP.transform.position.y);
@@ -55,21 +59,22 @@ public class SpawnController : MonoBehaviour
                     m_isEnabled = true;
                     break;
                 }
-                else if (m_spawnCount >= 4) 
+                else if (m_spawnCount >= 4)
                 {
-
-                    int rand = Random.Range(0, i);
+                    int rand = Random.Range(m_spawnEnemy.Length - i - 1, m_spawnEnemy.Length - 1);
                     GameObject Enemy = Instantiate(m_spawnEnemy[rand]);
                     Enemy.transform.position = new Vector2(m_spawnController[i].transform.position.x, m_spawnController[i].transform.position.y);
+                    m_ec = Enemy.GetComponent<EnemyController>();
+                    m_ec.m_SpawnPointChecker = i;
                 }
                 else
                 {
-
-                    int rand = Random.Range(m_spawnEnemy.Length - i, m_spawnEnemy.Length);
+                    int rand = Random.Range(0, i);
                     GameObject Enemy = Instantiate(m_spawnEnemy[rand]);
                     Enemy.transform.position = new Vector2(m_spawnController[i].transform.position.x, m_spawnController[i].transform.position.y);
+                    m_ec = Enemy.GetComponent<EnemyController>();
+                    m_ec.m_SpawnPointChecker = i;
                 }
-                m_isEnabled = true;
             }
         }
     }

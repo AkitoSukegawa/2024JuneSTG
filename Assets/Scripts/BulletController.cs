@@ -23,7 +23,7 @@ public class BulletController : MonoBehaviour
 
     Rigidbody2D m_rb = default;
 
-    
+
 
     private void Start()
     {
