@@ -10,19 +10,24 @@ public class Targetting : MonoBehaviour
 
     Transform target;
 
-    bool isTarget = false;
+    private Rigidbody2D m_rb;
+    private void Start()
+    {
+        m_rb = GetComponent<Rigidbody2D>();
+    }
+    private void Update()
+    {
+        m_rb.velocity = new Vector2(0, 1).normalized * 10;
+    }
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isTarget)
-        {
             tags = collision.tag;
             target = collision.transform;
-            if (tags == "Enemy")
+            if (tags == "Enemy" || tags == "Mid_Boss" || tags == "Boss")
             {
                 bulletController.TagChecker(tags, target);
-                isTarget = true;
+                Destroy(this.gameObject);
             }
-        }
     }
 }

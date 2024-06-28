@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
@@ -11,8 +13,6 @@ public class BulletController : MonoBehaviour
     [SerializeField] float m_sMovePower = 10f;
     /// <summary>íeÇÃÉ^ÉOéÊìæóp </summary>
     string m_bulletTag;
-    /// <summary>ìGÇÃÉ^ÉOéÊìæóp </summary>
-    string m_enemyTag;
 
     /// <summary>íeÇçÌèúÇ∑ÇÈÇ‹Ç≈ÇÃä‘äu(ïb)</summary>
     [SerializeField] float m_bDInterval = 3f;
@@ -23,7 +23,7 @@ public class BulletController : MonoBehaviour
 
     Rigidbody2D m_rb = default;
 
-
+    EnemyController m_ec;
 
     private void Start()
     {
@@ -56,9 +56,28 @@ public class BulletController : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        string tags = collider.tag;
+        if (tags == "Enemy" || tags == "Mid_Boss" || tags == "Boss")
+        {
+            if (m_bulletTag == "NormalBullet")
+            {
+                m_ec = collider.gameObject.GetComponent<EnemyController>();
+                m_ec.EnemyHPChanger(10);
+                Destroy(this.gameObject);
+            }
+            if (m_bulletTag == "SlowBullet")
+            {
+                m_ec = collider.gameObject.GetComponent<EnemyController>();
+                m_ec.EnemyHPChanger(5);
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
     public void TagChecker(string thisTag , Transform thisTransform) 
     {
-        m_enemyTag = thisTag;
         m_enemyTrans = thisTransform;
 
     }

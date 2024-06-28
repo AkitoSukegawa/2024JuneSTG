@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
@@ -14,11 +15,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject[] m_StayPoint;
 
     /// <summary>“G‚Ì‘Ì—Í</summary>
-    [SerializeField] int m_eHP;
+    [SerializeField] int m_eHP = 100;
     /// <summary>“G‚Ì’e‚Ì’e‘¬</summary>
-    [SerializeField] int m_eBSpeed;
+    [SerializeField] float m_eBSpeed = 5.0f;
     /// <summary>“G‚Ì’e‚ª‰½Way‚©</summary>
-    [SerializeField] int m_eBWay;
+    [SerializeField] int m_eBWay = 5;
     /// <summary>“G‚Ì“G‚Ì’e‚ÌƒvƒŒƒnƒu</summary>
     [SerializeField] GameObject m_eBPrefab;
 
@@ -55,8 +56,16 @@ public class EnemyController : MonoBehaviour
         tags = collider.tag;
         if (tags == "StayPoint")
         {
-            Debug.Log(tags);
             m_isStay = true;
+        }
+    }
+    public void EnemyHPChanger(int hpChanger)
+    {
+        m_eHP = m_eHP - hpChanger;
+        Debug.Log(m_eHP);
+        if (m_eHP < 0)
+        {
+            Destroy(this.gameObject);
         }
     }
 }

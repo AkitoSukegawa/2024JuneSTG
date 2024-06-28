@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - SpawnPoint
   - StayPoint
+  - Boss
+  - Mid_Boss
   layers:
   - Default
   - TransparentFX

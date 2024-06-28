@@ -8,6 +8,8 @@ public class SpawnController : MonoBehaviour
     [SerializeField] GameObject[] m_spawnController;
     /// <summary>湧く敵を保存しておく変数</summary>
     [SerializeField] GameObject[] m_spawnEnemy;
+    /// <summary>中ボスのプレハブ用</summary>
+    [SerializeField] GameObject m_midBoss;
     /// <summary>ボスのプレハブ用</summary>
     [SerializeField] GameObject m_boss;
     /// <summary>ボスのスポーン場所用</summary>
@@ -49,9 +51,14 @@ public class SpawnController : MonoBehaviour
         {
             m_isEnabled = true;
             m_spawnCount++;
+            Debug.Log(m_spawnCount);
             for(int i = 0; i < m_spawnController.Length; i++)
             {
                 if (m_spawnCount >= 9)
+                {
+                    break;
+                }
+                if (m_spawnCount == 8)
                 {
                     GameObject Boss = Instantiate(m_boss);
                     Boss.transform.position = new Vector2(m_bossSP.transform.position.x, m_bossSP.transform.position.y);
@@ -59,7 +66,7 @@ public class SpawnController : MonoBehaviour
                     m_isEnabled = true;
                     break;
                 }
-                else if (m_spawnCount >= 4)
+                else if (m_spawnCount >= 5)
                 {
                     int rand = Random.Range(m_spawnEnemy.Length - i - 1, m_spawnEnemy.Length - 1);
                     GameObject Enemy = Instantiate(m_spawnEnemy[rand]);
@@ -67,7 +74,21 @@ public class SpawnController : MonoBehaviour
                     m_ec = Enemy.GetComponent<EnemyController>();
                     m_ec.m_SpawnPointChecker = i;
                 }
-                else
+                else if (m_spawnCount == 4)
+                {
+                    if (i <= 2)
+                    {
+                        GameObject Enemy = Instantiate(m_midBoss);
+                        Enemy.transform.position = new Vector2(m_spawnController[i].transform.position.x, m_spawnController[i].transform.position.y);
+                        m_ec = Enemy.GetComponent<EnemyController>();
+                        m_ec.m_SpawnPointChecker = i;
+                    }
+                    else 
+                    {
+                        break;
+                    }
+                }
+                    else
                 {
                     int rand = Random.Range(0, i);
                     GameObject Enemy = Instantiate(m_spawnEnemy[rand]);
@@ -75,6 +96,18 @@ public class SpawnController : MonoBehaviour
                     m_ec = Enemy.GetComponent<EnemyController>();
                     m_ec.m_SpawnPointChecker = i;
                 }
+            }
+        }
+        if (m_isEnabled)
+        {
+            GameObject[] EnemyEnabled = GameObject.FindGameObjectsWithTag("Enemy");
+            GameObject[] MidBossEnabled = GameObject.FindGameObjectsWithTag("Mid_Boss");
+            GameObject[] BossEnabled = GameObject.FindGameObjectsWithTag("Boss");
+            if (EnemyEnabled.Length <= 0 && MidBossEnabled.Length <= 0 && BossEnabled.Length <= 0)
+            {
+                m_isEnabled = false;
+                m_isSpawned = false;
+                m_eSTimer = 0f;
             }
         }
     }
