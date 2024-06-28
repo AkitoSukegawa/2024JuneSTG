@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Targetting : MonoBehaviour 
@@ -29,5 +30,9 @@ public class Targetting : MonoBehaviour
                 bulletController.TagChecker(tags, target);
                 Destroy(this.gameObject);
             }
+            else if (tags == "Delete")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -11,6 +11,8 @@ TagManager:
   - StayPoint
   - Boss
   - Mid_Boss
+  - Wall
+  - Delete
   layers:
   - Default
   - TransparentFX

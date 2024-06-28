@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1892378046616053855}
   m_Layer: 0
   m_Name: Enemy_Relic_Blue
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,3 +193,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b252140ced901ce4891daf412b5617f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SpawnPointChecker: 0
+  m_StayPoint: []
+  m_BossStayPoint: {fileID: 0}
+  m_eHP: 100
+  m_eBSpeed: 4
+  m_eBWay: 12
+  m_eBAngle: 90
+  m_eBInterval: 0.6
+  m_eBPrefab: {fileID: 6007837895812213648, guid: e8bdcb0af5abf244599c0557341fa174, type: 3}

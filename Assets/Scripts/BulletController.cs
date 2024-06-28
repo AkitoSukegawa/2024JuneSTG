@@ -74,6 +74,10 @@ public class BulletController : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+        else if (tags == "Wall")
+        {
+            Destroy (this.gameObject);
+        }
     }
 
     public void TagChecker(string thisTag , Transform thisTransform) 

@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f27178bc65dda4458b8f637d626e78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_normalMovePower: 9
+  m_normalMovePower: 7
   m_slowMovePower: 3
   m_sprites:
   - {fileID: 21300000, guid: 48479c77b922690489040afce61d645a, type: 3}
@@ -182,5 +182,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1d442c15a496b1d43a03e65fbcbfd53a, type: 3}
   m_bulletNormal: {fileID: 7860941965782967357, guid: a1325af2330d47945a9c5d34e7af5d2f, type: 3}
   m_bulletSlow: {fileID: 7060871983349779304, guid: 24eb109fbf58cf846b906bc7b3c6544b, type: 3}
+  m_targetting: {fileID: 0}
   m_bulletInterval: 0.05
   m_bulletDistance: 0.1

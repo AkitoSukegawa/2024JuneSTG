@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnController : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class SpawnController : MonoBehaviour
     /// <summary>ボスのスポーン場所用</summary>
     [SerializeField] GameObject m_bossSP;
     /// <summary>敵を全滅させてから次に湧くまでの間隔(秒)</summary>
-    [SerializeField] float m_eSInterval = 5f;
+    [SerializeField] float m_eSInterval = 3f;
     /// <summary>湧き管理のタイマー用変数</summary>
     float m_eSTimer;
     /// <summary>Wave管理用変数</summary>
@@ -42,6 +43,10 @@ public class SpawnController : MonoBehaviour
         if (!m_isSpawned && !m_bossSpawned) 
         { 
             m_eSTimer += Time.deltaTime;
+            if (m_bossSpawned )
+            {
+
+            }
             if (m_eSTimer >= m_eSInterval)
             {
                 m_isSpawned = true;
@@ -64,6 +69,7 @@ public class SpawnController : MonoBehaviour
                     Boss.transform.position = new Vector2(m_bossSP.transform.position.x, m_bossSP.transform.position.y);
                     m_bossSpawned = true;
                     m_isEnabled = true;
+                    m_eSInterval = 5f;
                     break;
                 }
                 else if (m_spawnCount >= 5)
@@ -76,16 +82,12 @@ public class SpawnController : MonoBehaviour
                 }
                 else if (m_spawnCount == 4)
                 {
-                    if (i <= 2)
+                    if (i >= 2)
                     {
                         GameObject Enemy = Instantiate(m_midBoss);
                         Enemy.transform.position = new Vector2(m_spawnController[i].transform.position.x, m_spawnController[i].transform.position.y);
                         m_ec = Enemy.GetComponent<EnemyController>();
                         m_ec.m_SpawnPointChecker = i;
-                    }
-                    else 
-                    {
-                        break;
                     }
                 }
                     else
