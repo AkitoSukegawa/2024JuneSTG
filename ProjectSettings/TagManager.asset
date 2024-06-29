@@ -13,6 +13,7 @@ TagManager:
   - Mid_Boss
   - Wall
   - Delete
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

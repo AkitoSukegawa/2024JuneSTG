@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5951761316537315169}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.5, y: -3.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -161,7 +161,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8284891949240574742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +182,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1d442c15a496b1d43a03e65fbcbfd53a, type: 3}
   m_bulletNormal: {fileID: 7860941965782967357, guid: a1325af2330d47945a9c5d34e7af5d2f, type: 3}
   m_bulletSlow: {fileID: 7060871983349779304, guid: 24eb109fbf58cf846b906bc7b3c6544b, type: 3}
-  m_targetting: {fileID: 0}
-  m_bulletInterval: 0.05
+  m_targetting: {fileID: 2415839476359882246, guid: d6f5d966ec6e866458dd4fc93c7a1804, type: 3}
+  m_bulletInterval: 0.075
   m_bulletDistance: 0.1
+  isSheer: 0

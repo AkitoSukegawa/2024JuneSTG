@@ -88,6 +88,7 @@ public class EnemyController : MonoBehaviour
                         bulletV.x = m_eBSpeed * Mathf.Cos(_theta);
                         bulletV.y = m_eBSpeed * Mathf.Sin(_theta);
                         rb.velocity = bulletV;
+                        Destroy(Bullet, 5.0f);
                     }
                     else 
                     { 
@@ -107,6 +108,7 @@ public class EnemyController : MonoBehaviour
                         bulletV.x = m_eBSpeed * Mathf.Cos(_theta);
                         bulletV.y = m_eBSpeed * Mathf.Sin(_theta);
                         rb.velocity = bulletV;
+                        Destroy(Bullet,5.0f);
                     }
                 }
                 if (this.tag == "Boss")

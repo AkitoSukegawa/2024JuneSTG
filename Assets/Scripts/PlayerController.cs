@@ -34,6 +34,11 @@ public class PlayerController : MonoBehaviour
     /// <summary>íeÇ™ê∂ê¨Ç≥ÇÍÇΩéûÇÃíeÇ≤Ç∆ÇÃãóó£ </summary>
     [SerializeField] float m_bulletDistance = 0.1f;
 
+    public bool isSheer = false;
+    float m_sheerTimer = 0.0f;
+    float m_sheerInterval = 0.2f;
+    int sheerCount = 0;
+
 
     Rigidbody2D m_rb = default;
     SpriteRenderer m_sr;
@@ -107,6 +112,29 @@ public class PlayerController : MonoBehaviour
         { 
             m_bulletTimer = 0f;
             m_canFire = true;
+        }
+
+        if (isSheer)
+        {
+            m_sheerTimer += Time.deltaTime;
+            if (m_sheerTimer >= m_sheerInterval)
+            {
+                m_sheerTimer = 0f;
+                sheerCount++;
+                if (sheerCount >= 10) 
+                {
+                    m_sr.color = new Color(255, 255, 255, 255);
+                    isSheer = false;
+                }
+                if (sheerCount % 2 == 1) 
+                { 
+                    m_sr.color = new Color(255, 255, 255, 0);
+                }
+                else 
+                { 
+                    m_sr.color = new Color(255, 255, 255, 255); 
+                }
+            }
         }
     }
     private void FixedUpdate()
