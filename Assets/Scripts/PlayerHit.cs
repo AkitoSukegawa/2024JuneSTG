@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHit : MonoBehaviour
 {
@@ -109,7 +110,14 @@ public class PlayerHit : MonoBehaviour
                 {
                     m_hp.ChangeHPSprite(1);
                 }
+                Invoke(nameof(OnGameOver), 0.5f);
+
             }
         }
+    }
+
+    private void OnGameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 }
