@@ -125,6 +125,8 @@ public class PlayerController : MonoBehaviour
                 {
                     m_sr.color = new Color(255, 255, 255, 255);
                     isSheer = false;
+                    GameObject h = GameObject.FindWithTag("PlayerHitTrigger");
+                    h.GetComponent<PlayerHit>().isAlived = true;
                 }
                 if (sheerCount % 2 == 1) 
                 { 

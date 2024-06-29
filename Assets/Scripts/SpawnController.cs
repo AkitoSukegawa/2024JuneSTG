@@ -16,7 +16,7 @@ public class SpawnController : MonoBehaviour
     /// <summary>ボスのスポーン場所用</summary>
     [SerializeField] GameObject m_bossSP;
     /// <summary>敵を全滅させてから次に湧くまでの間隔(秒)</summary>
-    [SerializeField] float m_eSInterval = 3f;
+    [SerializeField] float m_eSInterval = 2f;
     /// <summary>湧き管理のタイマー用変数</summary>
     float m_eSTimer;
     /// <summary>Wave管理用変数</summary>

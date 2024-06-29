@@ -22,9 +22,7 @@ public class PlayerHit : MonoBehaviour
 
     float m_SpawnInterval = 1.0f;
 
-    float m_enabledTimer = 0.0f;
-
-    float m_enabledInterval = 3.0f;
+    public bool isAlived = false;
 
     bool m_spawned = true;
 
@@ -51,7 +49,7 @@ public class PlayerHit : MonoBehaviour
             m_SpawnTimer += Time.deltaTime;
             if (m_SpawnTimer >= m_SpawnInterval)
             {
-                m_SpawnTimer = 0.0f;
+                m_SpawnTimer = 0f ;
                 if (m_spawned)
                 { 
                     GameObject Player = Instantiate(m_playerPrefab);
@@ -65,14 +63,13 @@ public class PlayerHit : MonoBehaviour
 
         if (m_cc.enabled == false)
         {
-            m_enabledTimer += Time.deltaTime;
-            if(m_enabledTimer >= m_enabledInterval) 
+            if(isAlived)
             {
-                m_enabledTimer = 0.0f; 
                 m_cc.enabled = true;
                 m_sr.color = new Color(255, 255, 255, 255);
                 m_player = GameObject.FindWithTag("Player");
                 m_rb.transform.position = m_player.transform.position;
+                isAlived = false;
             }
         }
     }

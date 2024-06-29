@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4061211958024107117}
   m_Layer: 0
   m_Name: PlayerHitTrigger
-  m_TagString: Untagged
+  m_TagString: PlayerHitTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerPrefab: {fileID: 5951761316537315169, guid: 4a27153626555b442b960feac7eca330, type: 3}
+  isAlived: 0
 --- !u!58 &1244629886244243986
 CircleCollider2D:
   m_ObjectHideFlags: 0

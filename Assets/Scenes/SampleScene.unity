@@ -3075,7 +3075,7 @@ MonoBehaviour:
   m_midBoss: {fileID: 4959900822570557675, guid: 5d24330db84f2f148abf82e3c3671bd2, type: 3}
   m_boss: {fileID: 8506194206799352542, guid: 7ac4f083c2dc58a4799268628092d1cf, type: 3}
   m_bossSP: {fileID: 1755073760}
-  m_eSInterval: 3
+  m_eSInterval: 2
 --- !u!4 &2087733295
 Transform:
   m_ObjectHideFlags: 0
@@ -3210,7 +3210,7 @@ PrefabInstance:
       objectReference: {fileID: 2415839476359882246, guid: d6f5d966ec6e866458dd4fc93c7a1804, type: 3}
     - target: {fileID: 8284891949240574742, guid: 4a27153626555b442b960feac7eca330, type: 3}
       propertyPath: m_bulletInterval
-      value: 0.075
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
