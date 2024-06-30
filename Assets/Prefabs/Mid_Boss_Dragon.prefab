@@ -227,7 +227,7 @@ MonoBehaviour:
   m_SpawnPointChecker: 0
   m_StayPoint: []
   m_BossStayPoint: {fileID: 0}
-  m_eHP: 1000
+  m_eHP: 1500
   m_eBSpeed: 2
   m_eBWay: 18
   m_eBAngle: 270

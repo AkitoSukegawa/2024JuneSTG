@@ -189,10 +189,11 @@ MonoBehaviour:
   m_SpawnPointChecker: 0
   m_StayPoint: []
   m_BossStayPoint: {fileID: 0}
-  m_eHP: 150
-  m_eBSpeed: 3
-  m_eBWay: 5
+  m_eHP: 200
+  m_eBSpeed: 2
+  m_eBWay: 9
   m_eBAngle: 45
-  m_eBInterval: 1
+  m_eBInterval: 1.5
   m_eBPrefab: {fileID: 2424958255201843172, guid: 8ccfd70d26bff6945a74f404e5121e94, type: 3}
   m_BossBPrefab: []
+  m_clear: {fileID: 0}
