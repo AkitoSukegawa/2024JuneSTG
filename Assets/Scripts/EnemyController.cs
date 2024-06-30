@@ -1,11 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.U2D;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 
 [RequireComponent(typeof(Rigidbody2D), typeof(PolygonCollider2D))]
