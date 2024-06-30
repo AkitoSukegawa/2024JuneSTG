@@ -41,6 +41,7 @@ public class EnemyController : MonoBehaviour
     float _theta;
     float _bossAnglePlus;
     int m_bossBulletP = 0;
+    float BossAngleRange;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,7 @@ public class EnemyController : MonoBehaviour
         m_BossStayPoint = GameObject.Find("BossStay");
         m_rb.gravityScale = 0.0f;
         m_pc.isTrigger = true;
+        _bossAnglePlus = Mathf.PI * (m_eBAngle / 180) / 10;
         if (this.tag == "Enemy" || this.tag == "Mid_Boss")
         {
             Vector2 v2 = m_StayPoint[m_SpawnPointChecker].transform.position - this.transform.position;
@@ -88,18 +90,6 @@ public class EnemyController : MonoBehaviour
                         rb.velocity = bulletV;
                         Destroy(Bullet, 5.0f);
                     }
-                    else if (this.tag == "Mid_Boss")
-                    {
-                        if (m_eBWay > 1) _theta = (AngleRange / (m_eBWay - 1)) * i + m_PI + _bossAnglePlus;
-                        else _theta = m_PI;
-                        GameObject Bullet = Instantiate(m_eBPrefab, this.transform.position, this.transform.rotation);
-                        Rigidbody2D rb = Bullet.GetComponent<Rigidbody2D>();
-                        Vector2 bulletV = rb.velocity;
-                        bulletV.x = m_eBSpeed * Mathf.Cos(_theta);
-                        bulletV.y = m_eBSpeed * Mathf.Sin(_theta);
-                        rb.velocity = bulletV;
-                        Destroy(Bullet, 5.0f);
-                    }
                     else 
                     { 
                         if (this.tag == "Enemy" && m_eBAngle <= 45)
@@ -112,6 +102,11 @@ public class EnemyController : MonoBehaviour
                             if (m_eBWay > 1) _theta = (AngleRange / (m_eBWay - 1)) * i + -0.79f * m_PI ;
                             else _theta = -0.8f * m_PI;
                         }
+                        if (this.tag == "Mid_Boss")
+                        {
+                            if (m_eBWay > 1) _theta = (AngleRange / (m_eBWay - 1)) * i + m_PI + _bossAnglePlus;
+                            else _theta = m_PI;
+                        }
                         GameObject Bullet = Instantiate(m_eBPrefab, this.transform.position, this.transform.rotation);
                         Rigidbody2D rb = Bullet.GetComponent<Rigidbody2D>();
                         Vector2 bulletV = rb.velocity;
@@ -121,9 +116,14 @@ public class EnemyController : MonoBehaviour
                         Destroy(Bullet,5.0f);
                     }
                 }
-                if (this.tag == "Boss" && this.tag == "Mid_Boss")
+                if(this.tag == "Mid_Boss")
                 {
-                    float BossAngleRange = m_PI * (m_eBAngle / 180) / 10 ;
+                    BossAngleRange = m_PI * (m_eBAngle / 180) / 7;
+                    _bossAnglePlus = _bossAnglePlus + BossAngleRange;
+                }
+                if (this.tag == "Boss")
+                {
+                    BossAngleRange = m_PI * (m_eBAngle / 180) / 10;
                     _bossAnglePlus = _bossAnglePlus + BossAngleRange;
                     m_bossBulletP++;
                     if (m_bossBulletP >= m_BossBPrefab.Length ) 
