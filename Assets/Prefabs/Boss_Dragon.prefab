@@ -238,3 +238,4 @@ MonoBehaviour:
   - {fileID: 1428496039478571804, guid: a78c8c9b37a4dbc489c464fe6e5d6266, type: 3}
   - {fileID: 2018791046080592968, guid: c38eafcbfa29fb8489fc12a8e299a58d, type: 3}
   - {fileID: 708157779714253045, guid: 49f888d09e8aeae4ab5553c4b368b638, type: 3}
+  m_clear: {fileID: 2480144106253053506, guid: 7f6e2bcf4aa10fc46af34be907860215, type: 3}

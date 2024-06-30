@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
@@ -33,6 +34,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject m_eBPrefab;
     /// <summary>ボスの弾のプレハブ</summary>
     [SerializeField] GameObject[] m_BossBPrefab;
+
+    [SerializeField] GameObject m_clear;
 
     Rigidbody2D m_rb = default;
     PolygonCollider2D m_pc = default;
@@ -90,17 +93,29 @@ public class EnemyController : MonoBehaviour
                         rb.velocity = bulletV;
                         Destroy(Bullet, 5.0f);
                     }
+                    else if (this.tag == "Mid_Boss")
+                    {
+                        if (m_eBWay > 1) _theta = (AngleRange / (m_eBWay - 1)) * i + m_PI + _bossAnglePlus;
+                        else _theta = m_PI;
+                        GameObject Bullet = Instantiate(m_eBPrefab, this.transform.position, this.transform.rotation);
+                        Rigidbody2D rb = Bullet.GetComponent<Rigidbody2D>();
+                        Vector2 bulletV = rb.velocity;
+                        bulletV.x = m_eBSpeed * Mathf.Cos(_theta);
+                        bulletV.y = m_eBSpeed * Mathf.Sin(_theta);
+                        rb.velocity = bulletV;
+                        Destroy(Bullet, 5.0f);
+                    }
                     else 
                     { 
-                        if (this.tag == "Enemy")
+                        if (this.tag == "Enemy" && m_eBAngle <= 45)
                         {
                             if (m_eBWay > 1) _theta = (AngleRange / (m_eBWay - 1)) * i + -0.833f * (m_PI - AngleRange);
                             else _theta = -0.8f * m_PI;
                         }
-                        else if (this.tag == "Mid_Boss")
+                        if (this.tag == "Enemy" && m_eBAngle >= 90)
                         {
-                            if (m_eBWay > 1) _theta = (AngleRange / (m_eBWay - 1)) * i + m_PI;
-                            else _theta = m_PI;
+                            if (m_eBWay > 1) _theta = (AngleRange / (m_eBWay - 1)) * i + -0.79f * m_PI ;
+                            else _theta = -0.8f * m_PI;
                         }
                         GameObject Bullet = Instantiate(m_eBPrefab, this.transform.position, this.transform.rotation);
                         Rigidbody2D rb = Bullet.GetComponent<Rigidbody2D>();
@@ -111,7 +126,7 @@ public class EnemyController : MonoBehaviour
                         Destroy(Bullet,5.0f);
                     }
                 }
-                if (this.tag == "Boss")
+                if (this.tag == "Boss" && this.tag == "Mid_Boss")
                 {
                     float BossAngleRange = m_PI * (m_eBAngle / 180) / 10 ;
                     _bossAnglePlus = _bossAnglePlus + BossAngleRange;
@@ -142,6 +157,10 @@ public class EnemyController : MonoBehaviour
         m_eHP = m_eHP - hpChanger;
         if (m_eHP < 0)
         {
+            if(this.tag == "Boss")
+            {
+                Instantiate(m_clear);
+            }
             Destroy(this.gameObject);
         }
     }
