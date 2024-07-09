@@ -62,13 +62,13 @@ public class BulletController : MonoBehaviour
             if (m_bulletTag == "NormalBullet")
             {
                 m_ec = collider.gameObject.GetComponent<EnemyController>();
-                m_ec.EnemyHPChanger(15);
+                m_ec.EnemyHPChanger(15 + FindObjectOfType<ScoreManager>().Power/10);
                 Destroy(this.gameObject);
             }
             if (m_bulletTag == "SlowBullet")
             {
                 m_ec = collider.gameObject.GetComponent<EnemyController>();
-                m_ec.EnemyHPChanger(5);
+                m_ec.EnemyHPChanger(5 + FindObjectOfType<ScoreManager>().Power / 20);
                 Destroy(this.gameObject);
             }
         }

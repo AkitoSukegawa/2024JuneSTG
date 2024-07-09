@@ -150,6 +150,7 @@ public class EnemyController : MonoBehaviour
     public void EnemyHPChanger(int hpChanger)
     {
         m_eHP = m_eHP - hpChanger;
+        Debug.Log(m_eHP);
         if (m_eHP < 0)
         {
             if(this.tag == "Boss")
