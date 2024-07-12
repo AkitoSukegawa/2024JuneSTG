@@ -1285,9 +1285,9 @@ MonoBehaviour:
   m_eBAngle: 45
   m_eBInterval: 1000
   m_pointCount: 1
-  m_eBPrefab: {fileID: 0}
+  m_eBPrefab: {fileID: 2424958255201843172, guid: 8ccfd70d26bff6945a74f404e5121e94, type: 3}
   m_BossBPrefab: []
-  m_clear: {fileID: 0}
+  m_clear: {fileID: 2424958255201843172, guid: 8ccfd70d26bff6945a74f404e5121e94, type: 3}
   m_normalPointPrefab: {fileID: 1689449341078627171, guid: a4571b66f1e17804aac8da1ea9e44e05, type: 3}
   m_bigPointPrefab: {fileID: 8610771928781436654, guid: d227873bf449ecd4ea4d7ad20056161b, type: 3}
   m_normalPowerPrefab: {fileID: 22881624387779051, guid: e22dc684088ea7c4a8787220fa3c1bcc, type: 3}
@@ -2993,8 +2993,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8661863219878392724, guid: 7ac4f083c2dc58a4799268628092d1cf, type: 3}
       propertyPath: m_BossBPrefab.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8661863219878392724, guid: 7ac4f083c2dc58a4799268628092d1cf, type: 3}
+      propertyPath: m_BossBPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 2424958255201843172, guid: 8ccfd70d26bff6945a74f404e5121e94, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3734,7 +3738,7 @@ MonoBehaviour:
   m_eBAngle: 45
   m_eBInterval: 1000
   m_pointCount: 5
-  m_eBPrefab: {fileID: 0}
+  m_eBPrefab: {fileID: 2424958255201843172, guid: 8ccfd70d26bff6945a74f404e5121e94, type: 3}
   m_BossBPrefab: []
   m_clear: {fileID: 0}
   m_normalPointPrefab: {fileID: 1689449341078627171, guid: a4571b66f1e17804aac8da1ea9e44e05, type: 3}
