@@ -25,12 +25,23 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float m_eBInterval = 0.5f;
     /// <summary>敵の弾の発射間隔用タイマー</summary>
     float m_eBITimer = 1.0f;
+    /// <summary>敵が消えた時にいくつポイントを出すか</summary>
+    [SerializeField] int m_pointCount = 1;
     /// <summary>敵の敵の弾のプレハブ</summary>
     [SerializeField] GameObject m_eBPrefab;
     /// <summary>ボスの弾のプレハブ</summary>
     [SerializeField] GameObject[] m_BossBPrefab;
-
+    /// <summary>クリア用のプレハブ</summary>
     [SerializeField] GameObject m_clear;
+    /// <summary>ポイントのプレハブ用</summary>
+    [SerializeField] GameObject m_normalPointPrefab;
+    /// <summary>ボス用の大きいポイントのプレハブ用</summary>
+    [SerializeField] GameObject m_bigPointPrefab;
+    /// <summary>パワーのプレハブ用</summary>
+    [SerializeField] GameObject m_normalPowerPrefab;
+    /// <summary>パワーのプレハブ用</summary>
+    [SerializeField] GameObject m_bigPowerPrefab;
+
 
     Rigidbody2D m_rb = default;
     PolygonCollider2D m_pc = default;
@@ -151,11 +162,35 @@ public class EnemyController : MonoBehaviour
     {
         m_eHP = m_eHP - hpChanger;
         Debug.Log(m_eHP);
-        if (m_eHP < 0)
+        if (m_eHP <= 0)
         {
             if(this.tag == "Boss")
             {
                 Instantiate(m_clear);
+            }
+            else if (this.tag == "Mid_Boss")
+            {
+                int i = 0;
+                while (i < m_pointCount)
+                {
+                    GameObject point = Instantiate(m_bigPointPrefab);
+                    point.transform.position = this.transform.position;
+                    i++;
+                }
+                GameObject power = Instantiate(m_bigPowerPrefab);
+                power.transform.position = this.transform.position;
+            }
+            else
+            {
+                int i = 0;
+                while (i < m_pointCount)
+                {
+                    GameObject point = Instantiate(m_normalPointPrefab);
+                    point.transform.position = this.transform.position;
+                    i++;
+                }
+                GameObject power = Instantiate(m_normalPowerPrefab);
+                power.transform.position = this.transform.position;
             }
             Destroy(this.gameObject);
         }

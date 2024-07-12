@@ -5,9 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(PolygonCollider2D))]
 public abstract class ItemBase : MonoBehaviour
 {
-    /// <summary>ƒAƒCƒeƒ€‚ðŽæ‚Á‚½Žž‚É–Â‚éŒø‰Ê‰¹</summary>
-    [SerializeField] AudioClip _sound = default;
-
     Rigidbody2D m_rb = default;
     PolygonCollider2D m_pc = default;
     public abstract void OnActivated();
@@ -21,6 +18,9 @@ public abstract class ItemBase : MonoBehaviour
         m_rb.gravityScale = 0.0f;
         m_pc.isTrigger = true;
         Player = GameObject.FindGameObjectWithTag("Player");
+        float i = Random.Range(-0.5f, 0.5f);
+        float i2 = Random.Range(-0.5f, 0.5f);
+        this.transform.position = new Vector3(this.transform.position.x + i, this.transform.position.y + i2, 0);
     }
     private void Update()
     {
@@ -38,10 +38,6 @@ public abstract class ItemBase : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
-            if (_sound)
-            {
-                AudioSource.PlayClipAtPoint(_sound, Camera.main.transform.position);
-            }
             OnActivated();
             Destroy(this.gameObject);
         }

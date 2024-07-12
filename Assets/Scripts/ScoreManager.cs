@@ -16,12 +16,16 @@ public class ScoreManager : MonoBehaviour
 public void AddScore(int score)
     {
         _score += score;
-        _scoreText.text = _score.ToString("D6");
+        _scoreText.text = _score.ToString("D5");
     }
 
     public void AddPower(int power)
     {
         Power += power;
+        if (Power >= 100)
+        {
+            Power = 100;
+        }
         _powerText.text = Power.ToString("D3");
     }
 }

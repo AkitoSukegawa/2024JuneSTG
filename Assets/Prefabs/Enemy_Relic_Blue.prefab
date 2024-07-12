@@ -201,6 +201,11 @@ MonoBehaviour:
   m_eBWay: 6
   m_eBAngle: 90
   m_eBInterval: 0.4
+  m_pointCount: 7
   m_eBPrefab: {fileID: 6007837895812213648, guid: e8bdcb0af5abf244599c0557341fa174, type: 3}
   m_BossBPrefab: []
   m_clear: {fileID: 0}
+  m_normalPointPrefab: {fileID: 1689449341078627171, guid: a4571b66f1e17804aac8da1ea9e44e05, type: 3}
+  m_bigPointPrefab: {fileID: 8610771928781436654, guid: d227873bf449ecd4ea4d7ad20056161b, type: 3}
+  m_normalPowerPrefab: {fileID: 22881624387779051, guid: e22dc684088ea7c4a8787220fa3c1bcc, type: 3}
+  m_bigPowerPrefab: {fileID: 498713732524908159, guid: 90d2f371de92a054f8b394c1eca0ab46, type: 3}
